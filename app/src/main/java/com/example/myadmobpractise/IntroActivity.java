@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +17,6 @@ public class IntroActivity extends AppCompatActivity {
      * to load the app.
      */
     private static final long COUNTER_TIME = 5;
-
-    private long secondsRemaining;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +36,12 @@ public class IntroActivity extends AppCompatActivity {
         new CountDownTimer(IntroActivity.COUNTER_TIME * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                secondsRemaining = ((millisUntilFinished / 1000) + 1);
+                long secondsRemaining = ((millisUntilFinished / 1000) + 1);
                 counterTextView.setText("App is done loading in: " + secondsRemaining);
             }
 
             @Override
             public void onFinish() {
-                secondsRemaining = 0;
                 counterTextView.setText("Done.");
 
                 Application application = getApplication();

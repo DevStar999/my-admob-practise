@@ -47,6 +47,13 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
     /** LifecycleObserver method that shows the app open ad when the app moves to foreground. */
     @OnLifecycleEvent(Event.ON_START)
     protected void onMoveToForeground() {
+        /* If currentActivity is IntroActivity, then ensure appOpenAdd is null, so that App Open Ad is only shown
+           when the work of IntroActivity is completed and the app is just on the verge of switching to the
+           MainActivity
+        */
+        if ((currentActivity instanceof IntroActivity) && appOpenAdManager.appOpenAd != null) {
+            appOpenAdManager.appOpenAd = null;
+        }
         // Show the ad (if available) when the app moves to foreground.
         appOpenAdManager.showAdIfAvailable(currentActivity);
     }

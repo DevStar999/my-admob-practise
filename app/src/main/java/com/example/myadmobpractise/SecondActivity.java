@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_second);
     }
 
     @Override
@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
         // Calling finish() method to mimic the code flows in 'Feed the Animal' and '2048 Champs' projects
         finish();
     }
-    
-    public void gotoSecondActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+
+    public void gotoMainActivity(View view) {
+        Intent intent = new Intent(SecondActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
