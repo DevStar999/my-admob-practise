@@ -59,6 +59,15 @@
             android:scrollHorizontally="false"
             android:text="Goto 3rd Activity" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goto_fourth_activity_button_main_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="gotoFourthActivity"
+            android:scrollHorizontally="false"
+            android:text="Goto 4th Activity" />
+
     </LinearLayout>
 
 

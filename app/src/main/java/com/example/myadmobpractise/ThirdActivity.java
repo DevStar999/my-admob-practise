@@ -26,6 +26,12 @@ public class ThirdActivity extends AppCompatActivity {
         initialise();
     }
 
+    @Override
+    public void onBackPressed() {
+        // Calling finish() method to mimic the code flows in 'Feed the Animal' and '2048 Champs' projects
+        finish();
+    }
+
     public void gotoMainActivity(View view) {
         Intent intent = new Intent(ThirdActivity.this, MainActivity.class);
         startActivity(intent);
@@ -34,6 +40,12 @@ public class ThirdActivity extends AppCompatActivity {
 
     public void gotoSecondActivity(View view) {
         Intent intent = new Intent(ThirdActivity.this, SecondActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void gotoFourthActivity(View view) {
+        Intent intent = new Intent(ThirdActivity.this, FourthActivity.class);
         startActivity(intent);
         finish();
     }

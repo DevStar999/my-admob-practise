@@ -59,6 +59,12 @@ public class SecondActivity extends AppCompatActivity {
         finish();
     }
 
+    public void gotoFourthActivity(View view) {
+        Intent intent = new Intent(SecondActivity.this, FourthActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void rewardAdButtonClicked(View view) {
         showRewardedAd();
     }

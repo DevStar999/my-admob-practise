@@ -74,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
         showInterstitialAd();
     }
 
+    public void gotoFourthActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, FourthActivity.class);
+        startActivity(intent);
+        finish();
+
+        // Showing Interstitial Ad when user decides to switch to FourthActivity from MainActivity.
+        showInterstitialAd();
+    }
+
     private void loadBannerAd() {
         adView.setAdListener(new AdListener() {
             @Override
