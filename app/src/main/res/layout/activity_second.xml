@@ -7,8 +7,8 @@
     android:background="@android:color/holo_blue_light"
     tools:context=".SecondActivity">
 
-    <TextView
-        android:id="@+id/main_activity_title"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/second_activity_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -18,6 +18,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/coins_count_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/reward_ad_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second_activity_title" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/reward_ad_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Reward Ad"
+        android:onClick="rewardAdButtonClicked"
+        app:layout_constraintBottom_toTopOf="@id/goto_main_activity_button_second_activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coins_count_text_view"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/goto_main_activity_button_second_activity"
@@ -29,6 +52,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/reward_ad_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

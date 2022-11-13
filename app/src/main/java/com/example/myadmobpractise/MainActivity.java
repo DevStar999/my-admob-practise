@@ -94,38 +94,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadInterstitialAd() {
-        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
-            new InterstitialAdLoadCallback() {
-                @Override
-                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                    // The interstitialAd reference will be null until an ad is loaded.
-                    MainActivity.this.interstitialAd = interstitialAd;
-                    interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+        if (interstitialAd == null) {
+            InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+                    new InterstitialAdLoadCallback() {
                         @Override
-                        public void onAdClicked() {/* Called when a click is recorded for an ad. */}
-                        @Override
-                        public void onAdDismissedFullScreenContent() {
-                            // Called when ad is dismissed. Set the ad reference to null so to not show the ad a second time.
-                            MainActivity.this.interstitialAd = null;
+                        public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                            // The interstitialAd reference will be null until an ad is loaded.
+                            MainActivity.this.interstitialAd = interstitialAd;
+                            interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                                @Override
+                                public void onAdClicked() {/* Called when a click is recorded for an ad. */}
+                                @Override
+                                public void onAdDismissedFullScreenContent() {
+                                    // Called when ad is dismissed. Set the ad reference to null so to not show the ad
+                                    // a second time.
+                                    MainActivity.this.interstitialAd = null;
+                                    /* Un-comment the line below in-case, we come across a scenario where preloading the
+                                       ad is the expected behaviour
+                                    */
+                                    //loadInterstitialAd();
+                                }
+                                @Override
+                                public void onAdFailedToShowFullScreenContent(AdError adError) { // When ad fails to show.
+                                    MainActivity.this.interstitialAd = null;
+                                }
+                                @Override
+                                public void onAdImpression() {/* Called when an impression is recorded for an ad. */}
+                                @Override
+                                public void onAdShowedFullScreenContent() {/* Called when ad is shown. */}
+                            });
                         }
-                        @Override
-                        public void onAdFailedToShowFullScreenContent(AdError adError) { // Called when ad fails to show.
-                            MainActivity.this.interstitialAd = null;
-                        }
-                        @Override
-                        public void onAdImpression() {/* Called when an impression is recorded for an ad. */}
-                        @Override
-                        public void onAdShowedFullScreenContent() {/* Called when ad is shown. */}
-                    });
-                }
 
-                @Override
-                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) { // Handle the error
-                    interstitialAd = null;
-                    loadInterstitialAd();
-                }
-            }
-        );
+                        @Override
+                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) { // Handle the error
+                            interstitialAd = null;
+                            loadInterstitialAd();
+                        }
+                    }
+            );
+        }
     }
 
     private void showInterstitialAd() {
