@@ -16,6 +16,14 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
+/* TODO -> Although we have the code to show ads cooked up, when we will be actually placing ads in the real app,
+           we still would need to learn and take decisions related to the following:
+           (1) Frequency capping for App Open Ad
+           (2) In what fragments and activities do we place the Banner Ad
+           (3) In what transitions do we place the Interstitial Ads (& Frequency capping, also make sure ad is loaded
+           before we reach the point of time when it has to be shown)
+           (4) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
+*/
 public class MainActivity extends AppCompatActivity {
     private AdRequest adRequest;
     private AdView adView;
