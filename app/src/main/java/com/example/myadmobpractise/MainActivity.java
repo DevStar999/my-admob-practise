@@ -22,7 +22,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
            (2) In what fragments and activities do we place the Banner Ad
            (3) In what transitions do we place the Interstitial Ads (& Frequency capping, also make sure ad is loaded
            before we reach the point of time when it has to be shown)
-           (4) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
+           (4) For Rewarded Ads: Frequency capping, placement of where to keep ad & handle on ad load failed scenario
+           (5) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
 */
 public class MainActivity extends AppCompatActivity {
     private AdRequest adRequest;
@@ -61,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
         finish();
 
         // Showing Interstitial Ad when user decides to switch to SecondActivity from MainActivity.
+        showInterstitialAd();
+    }
+
+    public void gotoThirdActivity(View view) {
+        Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+        startActivity(intent);
+        finish();
+
+        // Showing Interstitial Ad when user decides to switch to ThirdActivity from MainActivity.
         showInterstitialAd();
     }
 

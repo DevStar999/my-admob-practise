@@ -6,7 +6,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,7 +26,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private void initialise() {
         coins = 0;
-        coinsCountTextView = findViewById(R.id.coins_count_text_view);
+        coinsCountTextView = findViewById(R.id.coins_count_text_view_second_activity);
         coinsCountTextView.setText("Coins Count = " + coins);
         adRequest = new AdRequest.Builder().build();
     }
@@ -50,6 +49,12 @@ public class SecondActivity extends AppCompatActivity {
 
     public void gotoMainActivity(View view) {
         Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void gotoThirdActivity(View view) {
+        Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
         startActivity(intent);
         finish();
     }

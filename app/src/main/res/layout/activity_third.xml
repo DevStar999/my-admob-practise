@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
-    tools:context=".SecondActivity">
+    tools:context=".ThirdActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/second_activity_title"
+        android:id="@+id/third_activity_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Second Activity"
+        android:text="Third Activity"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,40 +20,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/coins_count_text_view_second_activity"
+        android:id="@+id/coins_count_text_view_third_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/reward_ad_button"
+        app:layout_constraintBottom_toTopOf="@id/reward_interstitial_ad_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/second_activity_title" />
+        app:layout_constraintTop_toBottomOf="@id/third_activity_title" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/reward_ad_button"
+        android:id="@+id/reward_interstitial_ad_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="rewardAdButtonClicked"
-        android:text="Show Reward Ad"
-        app:layout_constraintBottom_toTopOf="@id/button_linear_layout_second_activity"
+        android:onClick="rewardInterstitialAdButtonClicked"
+        android:text="Show Rewarded Interstitial Ad"
+        app:layout_constraintBottom_toTopOf="@id/button_linear_layout_third_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/coins_count_text_view_second_activity" />
+        app:layout_constraintTop_toBottomOf="@id/coins_count_text_view_third_activity" />
 
     <LinearLayout
-        android:id="@+id/button_linear_layout_second_activity"
+        android:id="@+id/button_linear_layout_third_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reward_ad_button">
+        app:layout_constraintTop_toBottomOf="@id/reward_interstitial_ad_button">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/goto_main_activity_button_second_activity"
+            android:id="@+id/goto_main_activity_button_third_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -62,13 +62,13 @@
             android:text="Goto Main Activity" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/goto_third_activity_button_second_activity"
+            android:id="@+id/goto_second_activity_button_third_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:onClick="gotoThirdActivity"
+            android:onClick="gotoSecondActivity"
             android:scrollHorizontally="false"
-            android:text="Goto 3rd Activity" />
+            android:text="Goto 2nd Activity" />
 
     </LinearLayout>
 

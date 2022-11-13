@@ -8,7 +8,7 @@
     android:background="@android:color/holo_blue_light"
     tools:context=".MainActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/main_activity_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,29 +20,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/main_activity_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
         android:text="Leave and switch back to the app to see the ad."
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/button_linear_layout_main_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_activity_title" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goto_second_activity_button_main_activity"
+    <LinearLayout
+        android:id="@+id/button_linear_layout_main_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="gotoSecondActivity"
-        android:scrollHorizontally="false"
-        android:text="Goto Second Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/horizontal_guide_bottom_1_main_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintTop_toBottomOf="@id/main_activity_text">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goto_second_activity_button_main_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="gotoSecondActivity"
+            android:scrollHorizontally="false"
+            android:text="Goto 2nd Activity" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/goto_third_activity_button_main_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="gotoThirdActivity"
+            android:scrollHorizontally="false"
+            android:text="Goto 3rd Activity" />
+
+    </LinearLayout>
+
 
     <!-- Added this Guideline in layout for reference to the top of the
          banner ad view -->
