@@ -1,21 +1,28 @@
 package com.example.myadmobpractise;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 public class MainActivity extends AppCompatActivity {
+    private AdRequest adRequest;
     private AdView adView;
+    private InterstitialAd interstitialAd;
 
     private void initialise() {
+        adRequest = new AdRequest.Builder().build();
         adView = findViewById(R.id.banner_ad_adview);
     }
 
@@ -27,10 +34,15 @@ public class MainActivity extends AppCompatActivity {
         initialise();
 
         loadBannerAd();
+
+        loadInterstitialAd();
     }
 
     @Override
     public void onBackPressed() {
+        // Showing Interstitial Ad when user decides to leave the app from MainActivity
+        showInterstitialAd();
+
         // Calling finish() method to mimic the code flows in 'Feed the Animal' and '2048 Champs' projects
         finish();
     }
@@ -39,13 +51,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         startActivity(intent);
         finish();
+
+        // Showing Interstitial Ad when user decides to switch to SecondActivity from MainActivity.
+        showInterstitialAd();
     }
 
     private void loadBannerAd() {
-        AdRequest adRequest = new AdRequest.Builder().build();
         adView.setAdListener(new AdListener() {
             @Override
-            public void onAdClicked() {
+            public void onAdClicked() { // Code to be executed when the user clicks on an ad.
                 super.onAdClicked();
                 // TODO -> Implement logic to prevent users from clicking the ad too many times in a short period of time
                 /* Note: If the user clicks on ad too many times in a short period of time, Google may suspect this as fishy
@@ -55,11 +69,62 @@ public class MainActivity extends AppCompatActivity {
                 */
             }
             @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) { // Code to be executed when an ad request fails.
                 super.onAdFailedToLoad(loadAdError);
                 adView.loadAd(adRequest);
             }
+            @Override
+            public void onAdClosed() {/* Code to be executed when the user is about to return to the app after tapping on an ad. */}
+            @Override
+            public void onAdImpression() {/* Code to be executed when an impression is recorded for an ad. */}
+            @Override
+            public void onAdLoaded() {/* Code to be executed when an ad finishes loading. */}
+            @Override
+            public void onAdOpened() {/* Code to be executed when an ad opens an overlay that covers the screen. */}
         });
         adView.loadAd(adRequest);
+    }
+
+    private void loadInterstitialAd() {
+        InterstitialAd.load(this,"ca-app-pub-3940256099942544/1033173712", adRequest,
+            new InterstitialAdLoadCallback() {
+                @Override
+                public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                    // The interstitialAd reference will be null until an ad is loaded.
+                    MainActivity.this.interstitialAd = interstitialAd;
+                    interstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                        @Override
+                        public void onAdClicked() {/* Called when a click is recorded for an ad. */}
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            // Called when ad is dismissed. Set the ad reference to null so to not show the ad a second time.
+                            MainActivity.this.interstitialAd = null;
+                        }
+                        @Override
+                        public void onAdFailedToShowFullScreenContent(AdError adError) { // Called when ad fails to show.
+                            MainActivity.this.interstitialAd = null;
+                        }
+                        @Override
+                        public void onAdImpression() {/* Called when an impression is recorded for an ad. */}
+                        @Override
+                        public void onAdShowedFullScreenContent() {/* Called when ad is shown. */}
+                    });
+                }
+
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) { // Handle the error
+                    interstitialAd = null;
+                    loadInterstitialAd();
+                }
+            }
+        );
+    }
+
+    private void showInterstitialAd() {
+        if (interstitialAd != null) {
+            interstitialAd.show(MainActivity.this);
+        } else {
+            loadInterstitialAd();
+        }
     }
 }
