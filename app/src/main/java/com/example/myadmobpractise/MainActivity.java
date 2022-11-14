@@ -1,5 +1,6 @@
 package com.example.myadmobpractise;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+import com.example.myadmobpractise.MyApplication.OnShowAdCompleteListener;
 
 /* TODO -> Although we have the code to show ads cooked up, when we will be actually placing ads in the real app,
            we still would need to learn and take decisions related to the following:
@@ -39,12 +42,24 @@ public class MainActivity extends AppCompatActivity {
         adView = findViewById(R.id.banner_ad_adview);
     }
 
+    private void showAppOpenAd() {
+        Application application = getApplication();
+        if ((application instanceof MyApplication)) {
+            ((MyApplication) application).showAdIfAvailable(MainActivity.this, new OnShowAdCompleteListener() {
+                @Override
+                public void onShowAdComplete() {}
+            });
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initialise();
+
+        showAppOpenAd();
 
         loadBannerAd();
 

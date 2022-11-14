@@ -1,14 +1,11 @@
 package com.example.myadmobpractise;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myadmobpractise.MyApplication.OnShowAdCompleteListener;
 
 /** Splash Activity that inflates splash activity xml. */
 public class IntroActivity extends AppCompatActivity {
@@ -43,23 +40,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 counterTextView.setText("Done.");
-
-                Application application = getApplication();
-
-                // If the application is not an instance of MyApplication, log an error message and
-                // start the MainActivity without showing the app open ad.
-                if (!(application instanceof MyApplication)) {
-                    startMainActivity();
-                    return;
-                }
-
-                // Show the app open ad.
-                ((MyApplication) application).showAdIfAvailable(IntroActivity.this, new OnShowAdCompleteListener() {
-                    @Override
-                    public void onShowAdComplete() {
-                        startMainActivity();
-                    }
-                });
+                startMainActivity();
             }
         }.start();
     }
