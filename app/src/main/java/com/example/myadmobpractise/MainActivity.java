@@ -21,15 +21,17 @@ import com.example.myadmobpractise.MyApplication.OnShowAdCompleteListener;
 
 /* TODO -> Although we have the code to show ads cooked up, when we will be actually placing ads in the real app,
            we still would need to learn and take decisions related to the following:
-           (1) Frequency capping for App Open Ad
-           (2) In what fragments and activities do we place the Banner Ad
+           (1) Frequency capping for App Open Ad, also make sure this add is not shown every time app is opened, only a few
+           times. Use SharedPreferences to store the time when ad was shown and space out the instances properly when this ad
+           is shown. Disable eCPM
+           (2) In what fragments and activities do we place the Banner Ad (& Disable eCPM)
            (3) In what transitions do we place the Interstitial Ads (& Frequency capping, also make sure ad is loaded
-           before we reach the point of time when it has to be shown)
+           before we reach the point of time when it has to be shown, Disable eCPM)
            (4) For Rewarded Ads: Frequency capping, placement of where to keep ad, handle on ad load failed scenario & ensure
-           that rewarded ads do get loaded as soon as possible
-           (5) For Rewarded Interstitial Ads: Frequency capping, placement of where to keep ad, handle on ad load failed
-           scenario, ensure that rewarded ads do get loaded as soon as possible & close ad reward cancel dialog mechanism
-           exists
+           that rewarded ads do get loaded as soon as possible, Disable eCPM
+           (5) For Rewarded Interstitial Ads: Frequency capping, Disable eCPM, placement of where to keep ad, handle on ad
+           load failed scenario, ensure that rewarded ads do get loaded as soon as possible & close ad reward cancel dialog
+           mechanism exists
            (6) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
 */
 public class MainActivity extends AppCompatActivity {
