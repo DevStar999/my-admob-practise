@@ -21,6 +21,21 @@ import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
 
+/* TODO -> Things left to do related to Native Ads are as follows:
+           (1) Write notes related to Native Ads like we wrote for Rewarded Interstitial Ads in ThirdActivity from the 1st
+           resource below which are YouTube videos for Native Ads from Google AdMob's official channel
+           (2) Keep the 2nd resource as reference, implement more exhaustively the features related to Native Ads from the
+           GitHub projects that we downloaded from official documentation of Google and store them in 'references' directory
+           in this project
+           (3) Explore how to load multiple ads
+           (4) Explore how to make video ads work in Native Ads even if there are multiple ads
+*/
+/* Notes on Native Ads:
+    # Resources for Rewarded Interstitial Ads ->
+    (1) Part 1: https://www.youtube.com/watch?v=7HXZFGbDoJo, Part 2: https://www.youtube.com/watch?v=AfCvQ4p_1y8
+    (2) Video Tutorial: https://www.youtube.com/watch?v=wENWbEKRfaM,
+    GitHub Project Link: https://github.com/shaheershukur/AdmobTutorialForAndroid
+*/
 public class FourthActivity extends AppCompatActivity {
     private AdRequest adRequest;
 

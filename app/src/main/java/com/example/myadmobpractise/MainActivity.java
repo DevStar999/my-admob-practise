@@ -32,7 +32,8 @@ import com.example.myadmobpractise.MyApplication.OnShowAdCompleteListener;
            (5) For Rewarded Interstitial Ads: Frequency capping, Disable eCPM, placement of where to keep ad, handle on ad
            load failed scenario, ensure that rewarded ads do get loaded as soon as possible & close ad reward cancel dialog
            mechanism exists
-           (6) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
+           (6) For Native Ads: Disable eCPM, placement of where to keep ads, TODOs in FourthActivity
+           (7) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
 */
 public class MainActivity extends AppCompatActivity {
     private AdRequest adRequest;
