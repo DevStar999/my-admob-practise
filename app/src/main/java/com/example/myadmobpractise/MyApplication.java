@@ -1,5 +1,8 @@
 package com.example.myadmobpractise;
 
+import static com.google.android.gms.ads.RequestConfiguration.MAX_AD_CONTENT_RATING_G;
+import static com.google.android.gms.ads.RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE;
+
 import android.app.Activity;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
@@ -18,6 +21,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.appopen.AppOpenAd;
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -35,6 +39,16 @@ public class MyApplication extends Application implements ActivityLifecycleCallb
         super.onCreate();
         this.registerActivityLifecycleCallbacks(this);
 
+        /* Un-comment the line to set tag for under age of consent only if policy violations related to the ad content are
+           not resolved. Although the notes written in MainActivity.java class on this topic should be enough to resolve this
+           issue. In-case they are not, we try to resolve the issue by un-commenting the following line.
+        */
+        RequestConfiguration requestConfiguration = MobileAds.getRequestConfiguration().toBuilder()
+                .setTagForChildDirectedTreatment(TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+                //.setTagForUnderAgeOfConsent(RequestConfiguration.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE)
+                .setMaxAdContentRating(MAX_AD_CONTENT_RATING_G)
+                .build();
+        MobileAds.setRequestConfiguration(requestConfiguration);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NonNull InitializationStatus initializationStatus) {}

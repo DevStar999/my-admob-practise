@@ -35,6 +35,16 @@ import com.example.myadmobpractise.MyApplication.OnShowAdCompleteListener;
            (6) For Native Ads: Disable eCPM, placement of where to keep ads, TODOs in FourthActivity
            (7) In general, learn about how to prevent invalid clicks and other safety tips related to AdMob
 */
+
+/*  Notes on Ad Content Google Play Console Policy Violation -
+    (1) If at all we receive the mentioned violation because the ads displayed in the app are not suitable for children and
+    families we should do the following things.
+    (2) Go to Google AdMob Console and open 'Blocking controls' either at app-level or at account-level. Then open 'Sensitive
+    categories' and block all the required sensitive categories to be blocked.
+    (3) In the Google AdMob Console, in 'Blocking controls' either at app-level or at account-level. Then open 'Ad content
+    rating' and set the rating to 'G' which stands for 'General Audiences'.
+    (4) For ideas to implement to resolve this issue refer to this video -> https://www.youtube.com/watch?v=6WzZhz7Hkxk
+*/
 public class MainActivity extends AppCompatActivity {
     private AdRequest adRequest;
     private AdView adView;
